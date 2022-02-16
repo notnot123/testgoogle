@@ -4,13 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress": "cypress",
+    "cypress:openDev": "cypress open --env configFile=dev",
+    "cypress:runDev": "cypress run --env configFile=dev",
+    "cypress:openStage": "cypress open --env configFile=staging",
+    "cypress:openProd": "cypress open --env configFile=prod",
+    "clean:reports": "rmdir /S /Q cypress\\reports && mkdir cypress\\reports  && mkdir cypress\\reports\\mochareports",
+    "testcase": "cypress run",
+    "combine-reports": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochareports/index.json",
+    "generate-report": "marge cypress/reports/mochareports/index.json -f index -o cypress/reports/mochareports"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.26.0",
     "cypress": "^9.2.0",
     "yarn": "^1.22.17"
+  },
+  "devDependencies": {
+    "cypress-mochawesome-reporter": "^2.3.0",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.1"
   }
 }
